@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from .models import Post
 
-def post_list(request):
+def posts_list(request):
     posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    return render(request, 'blog/posts_list.html', {'posts': posts})
 
 def main_page(request):
     posts = Post.objects.order_by('-created_at')  # Сортировка по дате добавления
