@@ -6,7 +6,7 @@ def posts_list(request):
     return render(request, 'blog/posts_list.html', {'posts': posts})
 
 def main_page(request):
-    posts = Post.objects.order_by('-created_at')  # Сортировка по дате добавления
+    posts = Post.objects.order_by('-created_at')  # сортировка по дате добавления
     return render(request, 'blog/main_page.html', {'posts': posts})
 
 def search(request):
