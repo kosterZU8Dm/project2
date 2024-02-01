@@ -15,11 +15,18 @@ column_names=$(sqlite3 "$db_path" "$columns_sql_query")
 table_data_sql_query="SELECT * FROM $table_name;"
 table_data=$(sqlite3 "$db_path" "$table_data_sql_query")
 
-echo "all tables in sqlite_master:"
+# take users
+users_query="SELECT * FROM auth_user;"
+users_query_data=$(sqlite3 "$db_path" "$users_query")
+
+echo "***all tables in sqlite_master:"
 echo -e "$all_tables\n"
 
-echo -e "column names for table $table_name:\n"
+echo "***column names for table $table_name:"
 echo "$column_names"
 
-echo -e "\ndata from $table_name table:\n"
-echo "$table_data"
+echo -e "\n***data from $table_name table:"
+echo -e "$table_data\n"
+
+echo "***users:"
+echo "$users_query_data"
