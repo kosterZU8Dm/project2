@@ -51,6 +51,13 @@
         </div>
     </header>
 
+    {% if user.is_authenticated %}
+    <header>
+        <p>Вы авторизовались как {{ user.username }}</p>
+        <!-- другие элементы хедера для аутентифицированных пользователей -->
+    </header>
+    {% endif %}
+
     <main>
         {% block content %}
         {% endblock %}
