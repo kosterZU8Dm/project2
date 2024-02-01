@@ -1,0 +1,10 @@
+{% extends 'blog/main_page.html' %}
+
+{% block content %}
+  <h2>Log In</h2>
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ login_form.as_p }}
+    <button type="submit">Log In</button>
+  </form>
+{% endblock %}

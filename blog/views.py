@@ -33,3 +33,17 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'blog/signup.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        login_form = AuthenticationForm(request, data=request.POST)
+        if login_form.is_valid():
+            username = login_form.cleaned_data.get('username')
+            password = login_form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('main_page')
+    else:
+        login_form = AuthenticationForm()
+    return render(request, 'blog/login.html', {'login_form': login_form})
