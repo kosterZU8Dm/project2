@@ -1,6 +1,6 @@
 #!/bin/bash
 
-db_path="./db.sqlite3"
+db_path="../db.sqlite3"
 table_name="blog_post"
 
 # take all tables
