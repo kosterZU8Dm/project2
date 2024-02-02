@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
-from .forms import SignUpForm
+from .forms import SignUpForm, PostForm
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 
 def posts_list(request):
     posts = Post.objects.all()
@@ -47,3 +49,31 @@ def login_view(request):
     else:
         login_form = AuthenticationForm()
     return render(request, 'blog/login.html', {'login_form': login_form})
+
+@login_required
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('main_page')
+    else:
+        form = PostForm()
+    return render(request, 'blog/create_post.html', {'form': form})
+
+@login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.user == post.author or request.user.userprofile.is_special_user:
+        if request.method == 'POST':
+            form = PostForm(request.POST, instance=post)
+            if form.is_valid():
+                form.save()
+                return redirect('main_page')
+        else:
+            form = PostForm(instance=post)
+        return render(request, 'blog/edit_post.html', {'form': form, 'post': post})
+    else:
+        return HttpResponseForbidden("You don't have permission to edit this post.")

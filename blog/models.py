@@ -10,3 +10,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_special_user = models.BooleanField(default=False)
