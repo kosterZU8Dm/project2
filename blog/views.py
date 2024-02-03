@@ -77,3 +77,12 @@ def edit_post(request, post_id):
         return render(request, 'blog/edit_post.html', {'form': form, 'post': post})
     else:
         return HttpResponseForbidden("You don't have permission to edit this post.")
+    
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.user == post.author or request.user.userprofile.is_special_user:
+        post.delete()
+        return redirect('main_page')
+    else:
+        return HttpResponseForbidden("You don't have permission to delete this post.")

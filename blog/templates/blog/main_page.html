@@ -53,7 +53,7 @@
 
     {% if user.is_authenticated %}
     <header>
-        <p>Вы авторизовались как {{ user.username }}</p> |
+        <p>Вы авторизовались как {{ user.username }}</p>
         <a href="{% url 'create_post' %}">Создать пост</a>
         <form class="d-inline" action="{% url 'logout' %}" method="post">
             {% csrf_token %}
@@ -79,6 +79,7 @@
                     {% if user.is_authenticated %}
                         {% if user == post.author or user.userprofile.is_special_user %}
                             <a href="{% url 'edit_post' post.id %}">Редактировать</a>
+                            <a href="{% url 'delete_post' post.id %}">Удалить</a>
                         {% endif %}
                     {% endif %}
                 </div>
