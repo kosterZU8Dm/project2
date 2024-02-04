@@ -1,27 +1,5 @@
 # scheme of project2:
-project2/  
-├── blog/  
-│   ├── migrations/  
-│   ├── templates/  
-│   │   └── blog/  
-│   │       └── post_list.html  
-│   ├── __init__.py  
-│   ├── admin.py  
-│   ├── apps.py  
-│   ├── models.py  
-│   ├── tests.py  
-│   ├── urls.py  
-│   └── views.py  
-├── project2/  
-│   ├── __init__.py  
-│   ├── asgi.py  
-│   ├── settings.py  
-│   ├── urls.py  
-│   └── wsgi.py  
-├── manage.py  
-├── .gitignore  
-├── db.sqlite3  
-└── README.md  
+
 ---
 # superuser creation
 ```
@@ -43,3 +21,8 @@ python3 manage.py runserver
 ```
 python3 manage.py test blog.tests
 ```
+---
+# Deployment plan:
+1. ...
+2. ./manage.py collectstatic
+3. ...
