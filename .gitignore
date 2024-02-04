@@ -3,3 +3,5 @@ __pycache__/
 settings.py
 */migrations/
 db.sqlite3
+static_root/admin
+static_root/ckeditor

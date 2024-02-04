@@ -21,3 +21,8 @@ python3 manage.py runserver
 ```
 python3 manage.py test blog.tests
 ```
+---
+# Deployment plan:
+1. ...
+2. ./manage.py collectstatic
+3. ...
