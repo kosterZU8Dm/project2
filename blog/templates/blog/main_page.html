@@ -32,6 +32,17 @@
             text-align: center;
             padding: 10px;
         }
+        .custom-header {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Добавлено для центрирования вертикально. */
+        }
+        .custom-header a.btn {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -52,14 +63,16 @@
     </header>
 
     {% if user.is_authenticated %}
-    <header>
-        <p>Вы авторизовались как {{ user.username }}</p>
-        <a href="{% url 'create_post' %}">Создать пост</a>
-        <form class="d-inline" action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" style="color: white; text-decoration: none; background: none; border: none; cursor: pointer;">Выйти</button>
-        </form>
-    </header>
+        <header class="custom-header">
+            <p>Вы авторизовались как {{ user.username }}</p>
+            <div>
+                <a href="{% url 'create_post' %}" class="btn btn-light">Создать пост</a>
+                <form class="d-inline" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-light">Выйти</button>
+                </form>
+            </div>
+        </header>
     {% endif %}
 
     <main>
