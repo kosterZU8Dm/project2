@@ -40,45 +40,45 @@ python3 manage.py test blog.tests
 ### Manual Deployment:
 1. run git clone aim to current repository
 2. run:
-'''
+```
 pip3 install -r requirements.txt
-'''
+```
 3. run:
-'''
+```
 pip install psycopg2-binary gunicorn
-'''
+```
 4. take settings.py and move to project directory
 5. add domain name or IP to section of ALLOWED_HOSTS into settings.py 
 6. run:
-'''
+```
 cp ./raw_project_files/make_psql.sh ./bash_scripts
-'''
+```
 after that you need add credentials to variables in that script
 after below step you need execute script:
-'''
+```
 bash ./bash_scripts/make_psql.sh
-'''
+```
 7. add db credetials to section of DATABASES into settings.py
 8. check the section of STATIC_ROOT into seetings.py and type correct path if need
 9. check the section of LOGGING into settings.py and type correct path if need
 10. switch value of Debug to False into setting.py 
 11. run:
-'''
+```
 mkdir ./post/migrations && touch ./post/migrations/__init__.py
-'''
+```
 12. run:
-'''
+```
 python3 manage.py makemigrations
 python3 manage.py migrate
-'''
+```
 13. run:
-'''
+```
 python3 manage.py collectstatic
-'''
+```
 14. test running:
-'''
+```
 gunicorn -c gunicorn_config.py project2.wsgi
-'''
+```
 ### Automation Deployment to VM:
 
 ### Automation Deployment via GitHub Actions CI/CD and Start into Docker Compose:
