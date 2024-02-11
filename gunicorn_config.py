@@ -1,7 +1,7 @@
 import logging
 
 loglevel = 'debug'
-logfile = './logs/gunicorn.log'
+logfile = '/opt/project2/logs/gunicorn.log'
 
-bind = "0.0.0.0:8000"
+bind = "127.0.0.1:8000"
 workers = 4

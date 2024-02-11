@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance for project2
+After=network.target
+
+[Service]
+User=project2
+Group=project2
+WorkingDirectory=/opt/project2
+ExecStart=/opt/project2/venv/bin/gunicorn -c /opt/project2/gunicorn_config.py project2.wsgi
+
+[Install]
+WantedBy=multi-user.target
+
