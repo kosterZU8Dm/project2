@@ -79,6 +79,20 @@ python3 manage.py collectstatic
 ```
 gunicorn -c gunicorn_config.py project2.wsgi
 ```
+15. run the let's encrypt install:
+install certbot:
+```
+sudo apt install certbot
+```
+generate cert:
+```
+sudo certbot certonly --nginx -d domain.com
+```
+check "443 section" into nginx.conf and add it if it not exist
+restart nginx:
+```
+sudo systemctl restart nginx
+``` 
 ### Automation Deployment to VM:
 
 ### Automation Deployment via GitHub Actions CI/CD and Start into Docker Compose:
