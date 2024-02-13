@@ -86,7 +86,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>
                     <p class="card-text">{{ post.content|safe }}</p>
-                    <p class="card-text">Автор: {{ post.author.username }}</p>
+<!--                    <p class="card-text">Автор: {{ post.author.username }}</p> -->
                     <p class="card-text">Дата создания: {{ post.created_at }}</p>
 
                     {% if user.is_authenticated %}
