@@ -86,3 +86,7 @@ def delete_post(request, post_id):
         return redirect('main_page')
     else:
         return HttpResponseForbidden("You don't have permission to delete this post.")
+    
+def view_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'blog/view_post.html', {'post': post})
