@@ -41,15 +41,13 @@ python3 manage.py test blog.tests
 1. run git clone aim to current repository
 2. run:
 ```
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 3. run:
 ```
 pip install psycopg2-binary gunicorn
 ```
-4. take settings.py and move to project directory
-5. add domain name or IP to section of ALLOWED_HOSTS into settings.py 
-6. run:
+4. run:
 ```
 cp ./raw_project_files/make_psql.sh ./bash_scripts
 ```
@@ -58,28 +56,38 @@ after below step you need execute script:
 ```
 bash ./bash_scripts/make_psql.sh
 ```
-7. add db credetials to section of DATABASES into settings.py
-8. check the section of STATIC_ROOT into seetings.py and type correct path if need
-9. check the section of LOGGING into settings.py and type correct path if need
-10. switch value of Debug to False into setting.py 
-11. run:
+5. take raw_project_files/settings.py and move to project directory:
+```
+cp ./raw_project_files/settings.py ./project2/
+```
+6. add db credetials to section of DATABASES into settings.py
+7. check the section of STATIC_ROOT into seetings.py and type correct path if need
+8. check the section of LOGGING into settings.py and type correct path if need
+9. generate SECRET_KEY to section of SECRET_KEY into settings.py
+10. add domain name or IP to section of ALLOWED_HOSTS into settings.py 
+11. switch value of Debug to False into setting.py
+12. run:
 ```
 mkdir ./post/migrations && touch ./post/migrations/__init__.py
 ```
-12. run:
+13. run:
 ```
 python3 manage.py makemigrations
 python3 manage.py migrate
 ```
-13. run:
+14. run:
 ```
 python3 manage.py collectstatic
 ```
-14. test running:
+15. make directory of logs:
+```
+mkdir ./logs
+```
+16. test running:
 ```
 gunicorn -c gunicorn_config.py project2.wsgi
 ```
-15. run the let's encrypt install:
+17. run the let's encrypt install:
 install certbot:
 ```
 sudo apt install certbot
@@ -92,7 +100,13 @@ check "443 section" into nginx.conf and add it if it not exist
 restart nginx:
 ```
 sudo systemctl restart nginx
-``` 
+```
+18. make service unit:
+```
+sudo cp ./raw_project_files/project2.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl start project2
+```
 ### Automation Deployment to VM:
 
 ### Automation Deployment via GitHub Actions CI/CD and Start into Docker Compose:
