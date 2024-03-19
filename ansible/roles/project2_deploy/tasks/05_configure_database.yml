@@ -1,0 +1,36 @@
+---
+- name: Создание базы данных и пользователя в PostgreSQL
+  hosts: your_database_host
+  become: yes
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Создание базы данных
+      postgresql_db:
+        name: "{{ db_name }}"
+        login_user: "{{ db_user }}"
+        state: present
+
+    - name: Создание пользователя
+      postgresql_user:
+        db: "{{ db_name }}"
+        name: "{{ db_user_project }}"
+        password: "{{ db_password_project }}"
+        priv: "ALL"
+        state: present
+        login_user: "{{ db_user }}"
+
+    - name: Назначение привилегий пользователю
+      postgresql_privs:
+        db: "{{ db_name }}"
+        role: "{{ db_user_project }}"
+        privs: ALL
+        objs: ALL_IN_SCHEMA
+        type: database
+        state: present
+        login_user: "{{ db_user }}"
+
+    - name: Проверка успешности операции
+      fail:
+        msg: "Ошибка при создании базы данных и пользователя."
+      when: not (result_db.changed or result_user.changed)

@@ -1,0 +1,6 @@
+---
+- name: Create project service user
+  user:
+    name: project2
+    system: yes
+    shell: /bin/false

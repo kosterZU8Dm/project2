@@ -1,0 +1,11 @@
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+  become: yes
+
+- name: start and enable project2
+  systemd:
+    name: project2
+    state: started
+    enabled: yes
+  become: yes

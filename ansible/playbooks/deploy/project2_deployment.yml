@@ -1,0 +1,7 @@
+---
+- name: Deploy project2
+  hosts: web-servers
+  become: yes
+
+  roles:
+    - project2_deploy

@@ -1,0 +1,15 @@
+# 05_configure_database.yml
+db_user: "postgres"
+db_name: "example_db"
+db_user_project: "example_user"
+db_password_project: "secure_password"
+# 06_copy_settings.yml
+secret_key: 'your_secret_key'
+allowed_hosts: "[your, allowed, hosts]"
+db_port: 'your_db_port'
+static_root: '/path/to/static'
+log_file: '/path/to/logfile.log'
+# WORK_DIR
+project_path: "/opt/project2"
+# DOMAINS
+domain_name: "example.com"

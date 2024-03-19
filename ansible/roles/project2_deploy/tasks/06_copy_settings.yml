@@ -1,0 +1,5 @@
+---
+- name: Copy project settings file from template
+  template:
+    src: templates/settings.py.j2
+    dest: /opt/project2/settings.py

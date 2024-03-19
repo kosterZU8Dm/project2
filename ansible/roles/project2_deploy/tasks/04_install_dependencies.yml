@@ -1,0 +1,6 @@
+---
+- name: Install additional dependencies
+  pip:
+    name:
+      - psycopg2-binary
+      - gunicorn

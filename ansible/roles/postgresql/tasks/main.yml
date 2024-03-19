@@ -1,0 +1,20 @@
+---
+- name: Install PostgreSQL
+  hosts: postgresql_servers
+  become: yes
+  tasks:
+    - name: Add PostgreSQL repository
+      apt_repository:
+        repo: deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main
+        state: present
+        update_cache: yes
+
+    - name: Import PostgreSQL repository signing key
+      apt_key:
+        url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+        state: present
+
+    - name: Install PostgreSQL server
+      apt:
+        name: postgresql-{{ postgresql_version }}
+        state: present

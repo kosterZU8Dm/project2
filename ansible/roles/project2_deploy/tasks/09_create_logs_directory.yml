@@ -1,0 +1,5 @@
+---
+- name: Create logs directory
+  file:
+    path: /opt/project2/logs
+    state: directory

@@ -1,0 +1,4 @@
+---
+- name: Install Python requirements
+  pip:
+    requirements: /opt/project2/requirements.txt

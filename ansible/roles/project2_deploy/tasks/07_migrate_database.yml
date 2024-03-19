@@ -1,0 +1,10 @@
+---
+- name: Make migrations
+  command: python3 manage.py makemigrations
+  args:
+    chdir: "{{ project_path }}"
+
+- name: Apply migrations
+  command: python3 manage.py migrate
+  args:
+    chdir: "{{ project_path }}"

@@ -1,0 +1,3 @@
+---
+- name: Generate SSL certificate
+  command: sudo certbot certonly --nginx -d domain.com

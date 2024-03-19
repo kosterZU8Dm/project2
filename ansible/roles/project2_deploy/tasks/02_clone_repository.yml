@@ -1,0 +1,5 @@
+---
+- name: Clone project repository
+  git:
+    repo: https://github.com/kosterZU8Dm/project2.git
+    dest: /opt

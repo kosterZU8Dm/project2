@@ -1,0 +1,9 @@
+---
+- name: Install Python
+  hosts: python_servers
+  become: yes
+  tasks:
+    - name: Install Python
+      package:
+        name: python{{ python_version }}
+        state: present

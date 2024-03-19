@@ -1,0 +1,20 @@
+---
+- name: Install Nginx
+  hosts: nginx_servers
+  become: yes
+  tasks:
+    - name: Add Nginx repository
+      apt_repository:
+        repo: deb http://nginx.org/packages/mainline/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} nginx
+        state: present
+        update_cache: yes
+
+    - name: Import Nginx repository signing key
+      apt_key:
+        url: http://nginx.org/keys/nginx_signing.key
+        state: present
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present

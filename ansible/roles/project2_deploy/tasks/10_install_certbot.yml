@@ -1,0 +1,5 @@
+---
+- name: Install Certbot
+  apt:
+    name: certbot
+    state: present

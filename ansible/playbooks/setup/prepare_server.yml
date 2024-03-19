@@ -1,0 +1,12 @@
+---
+- name: Main playbook
+  hosts: all
+  tasks:
+    - include_role:
+        name: postgresql
+    - include_role:
+        name: python
+    - include_role:
+        name: git
+    - include_role:
+        name: nginx
